@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-jobs:        
+jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -16,9 +16,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
       - name: add semantic release plugins
         run: |
           npm install -D '@semantic-release/changelog' \
