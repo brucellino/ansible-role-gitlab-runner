@@ -1,0 +1,24 @@
+# Tasks to install the gitlab runner
+- name: Ensure runner base directory
+  ansible.builtin.file:
+    path: "{{ gitlab_runner_base_path }}"
+    state: directory
+    mode: "0755"
+    owner: root
+    group: root
+
+- name: Ensure Gitlab gpg key
+  ansible.builtin.apt_key:
+    url: "{{ gitlab_gpg_key_url }}"
+    state: present
+    validate_certs: true
+    file: /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
+
+- name: Ensure Gitlab repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg] https://packages.gitlab.com/runner/gitlab-runner/{{ ansible_distribution }}/ {{ ansible_release }} main" # noqa yaml[line-length]
+    state: present
+    mode: "0644"
+    update_cache: true
+    validate_certs: true
+    filename: gitlab-runner
