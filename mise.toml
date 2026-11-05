@@ -7,4 +7,4 @@ auto_install = true
 prek = "0.5.10"
 "pipx:ansible-core" = "2.22.0"
 "pipx:ansible" = {version = "14.6.0", pipx_args = "--include-deps --include-apps"}
-"pipx:ansible-lint" = "26.10.1"
+"pipx:ansible-lint" = "26.11.0"
